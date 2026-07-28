@@ -1,0 +1,22 @@
+/* ==========================================================================
+   RESPONSIVE — mobile-first overrides at 900px and 720px breakpoints
+   ========================================================================== */
+@media (max-width:900px){
+  .case-grid{grid-template-columns:1fr;}
+  .matrix{grid-template-columns:1fr;}
+  .process{grid-template-columns:1fr 1fr;}
+  .funnel{grid-template-columns:1fr;}
+  .funnel-form{border-right:none; border-bottom:1px solid var(--border-soft);}
+  .status-row{grid-template-columns:1fr auto; row-gap:6px;}
+  .status-metric{grid-column:1/2;}
+  .status-badge{grid-column:2/3; grid-row:1/3;}
+}
+
+@media (max-width:720px){
+  .nav-links{display:none;}
+  .nav-toggle{display:flex;}
+  .nav-cta .btn-ghost{display:none;}
+  .process{grid-template-columns:1fr;}
+  .row-2{grid-template-columns:1fr;}
+  .stat-row{gap:var(--space-lg);}
+}

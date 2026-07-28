@@ -1,0 +1,45 @@
+/* ==========================================================================
+   Design Tokens — single source of truth for the visual system.
+   Change a value here and it propagates everywhere it's used.
+   ========================================================================== */
+:root{
+  /* Surfaces */
+  --bg:#0A0F1C;
+  --bg-elevated:#0F1526;
+  --surface:#121A2E;
+  --surface-2:#161F36;
+  --border:#232D42;
+  --border-soft:#1B2337;
+
+  /* Text */
+  --text:#E9EDF6;
+  --text-muted:#9AA3B8;
+  --text-faint:#5C6479;
+
+  /* Accent — warm amber, CTA + emphasis */
+  --accent:#F2A93B;
+  --accent-hover:#FFC266;
+  --accent-dim:rgba(242,169,59,0.12);
+
+  /* Signal colors — reserved for live status only, not decoration */
+  --signal-ok:#34D399;
+  --signal-ok-dim:rgba(52,211,153,0.14);
+  --signal-cyan:#5FD4E8;
+
+  /* Typography */
+  --font-mono:'JetBrains Mono', ui-monospace, monospace;
+  --font-sans:'IBM Plex Sans', -apple-system, sans-serif;
+
+  /* Spacing scale */
+  --space-xs:8px;
+  --space-sm:16px;
+  --space-md:24px;
+  --space-lg:40px;
+  --space-xl:64px;
+  --space-2xl:96px;
+
+  /* Radius & layout */
+  --radius:10px;
+  --radius-lg:16px;
+  --max:1180px;
+}
