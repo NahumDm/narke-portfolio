@@ -32,7 +32,7 @@
       <li><a href="#contact">Contact</a></li>
     </ul>
     <div class="nav-cta">
-      <a href="#contact" class="btn btn-ghost btn-sm" data-role="recruiter">Resume</a>
+      <a href="https://drive.google.com/file/d/1LQMZwb-XbGOAfmEz0-f3D3ASGj_KjcRc/view?usp=sharing" class="btn btn-ghost btn-sm" data-role="recruiter">Resume</a>
       <a href="#contact" class="btn btn-primary btn-sm" data-role="client">Hire Me</a>
       <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
@@ -41,7 +41,7 @@
   </nav>
   <ul class="nav-links" id="mobileMenu" style="display:none; flex-direction:column; gap:0; padding:0 24px 18px;">
     <li style="padding:10px 0;"><a href="#work">Work</a></li>
-    <li style="padding:10px 0;"><a href="#stack">Stack</a></li>
+    <li style="padding:10px 0;"><a href="#matrix">Stack</a></li>
     <li style="padding:10px 0;"><a href="#process">Process</a></li>
     <li style="padding:10px 0;"><a href="#contact">Contact</a></li>
   </ul>
@@ -60,7 +60,7 @@
         <p class="lede">Production-grade APIs and cross-platform mobile apps for teams that need to ship fast and stay up — Django backends, Flutter apps, and the RAG pipelines that turn documents into real answers.</p>
         <div class="hero-ctas">
           <a href="#contact" class="btn btn-primary" data-role="client">Request Project Scope</a>
-          <a href="#contact" class="btn btn-ghost" data-role="recruiter">View Resume / Book Interview</a>
+          <a href="#contact" class="btn btn-ghost" data-role="recruiter">Book Interview</a>
         </div>
       </div>
 
@@ -106,11 +106,11 @@
   <section class="stack-strip" id="stack" aria-label="Technology stack">
     <div class="stack-track" aria-hidden="true">
       <span class="chip">Python</span><span class="chip">Django</span><span class="chip">DRF</span><span class="chip">PostgreSQL</span>
-      <span class="chip">Flutter</span><span class="chip">Dart</span><span class="chip">Mistral API</span><span class="chip">Vector Search</span>
+      <span class="chip">Flutter</span><span class="chip">Dart</span><span class="chip">OpenAI-compatible API</span><span class="chip">Vector Search</span>
       <span class="chip">REST APIs</span><span class="chip">Redis</span><span class="chip">Docker</span><span class="chip">CI/CD</span>
       <span class="chip">Clean Architecture</span><span class="chip">React</span><span class="chip">Offline-first</span>
       <span class="chip">Python</span><span class="chip">Django</span><span class="chip">DRF</span><span class="chip">PostgreSQL</span>
-      <span class="chip">Flutter</span><span class="chip">Dart</span><span class="chip">Mistral API</span><span class="chip">Vector Search</span>
+      <span class="chip">Flutter</span><span class="chip">Dart</span><span class="chip">OpenAI-compatible API</span><span class="chip">Vector Search</span>
       <span class="chip">REST APIs</span><span class="chip">Redis</span><span class="chip">Docker</span><span class="chip">CI/CD</span>
       <span class="chip">Clean Architecture</span><span class="chip">React</span><span class="chip">Offline-first</span>
     </div>
@@ -141,7 +141,7 @@
         </button>
         <div class="case-body" id="case-1">
           <div class="case-body-inner">
-            <p class="lede" style="max-width:100%; margin-top:14px;">A field maintenance reporting app built for crews working in low-connectivity environments — where a lost report means a delayed repair.</p>
+            <p class="lede" style="max-width:100%; margin-top:14px;">A field maintenance reporting app for technicians at remote satellite sites, built to turn a maintenance issue into a digital report that reaches every technician and manager on the job instantly.</p>
             <div class="case-grid">
               <div class="case-col">
                 <h4>The Challenge</h4>
@@ -157,7 +157,7 @@
               </div>
             </div>
             <div class="case-stack">
-              <span class="chip">Flutter</span><span class="chip">Dart</span><span class="chip">Offline-first sync</span><span class="chip">Local persistence</span><span class="chip">REST</span><span class="chip">Role-based access</span>
+              <span class="chip">Flutter</span><span class="chip">Dart</span><span class="chip">Offline-first sync</span><span class="chip">Local persistence</span><span class="chip">REST</span><span class="chip">Role-based access</span><span class="chip">Firebase</span>
             </div>
           </div>
         </div>
@@ -175,19 +175,19 @@
         </button>
         <div class="case-body" id="case-2">
           <div class="case-body-inner">
-            <p class="lede" style="max-width:100%; margin-top:14px;">A retrieval-augmented backend that lets teams ask questions directly against their own documents, grounded in retrieved source content rather than generic model recall.</p>
+            <p class="lede" style="max-width:100%; margin-top:14px;">A retrieval-augmented legal assistant that answers questions on Ethiopian law — grounding every response in real legal documents and citing its sources, instead of relying on generic model recall.</p>
             <div class="case-grid">
               <div class="case-col">
                 <h4>The Challenge</h4>
-                <p>Long documents are slow to search and easy to misread. Teams needed accurate, natural-language answers grounded in their own material — not a chatbot prone to confidently making things up.</p>
+                <p>Ethiopian legal information is scattered across sources with no central place to search it — and even when you find the right document, it rarely comes with an explanation. Lawyers lose hours preparing for court cases, researchers struggle to locate the right material, and everyday citizens have no easy way to understand what the law actually means for them.</p>
               </div>
               <div class="case-col">
                 <h4>Architecture</h4>
-                <p>Django and Django REST Framework power an ingestion pipeline that chunks and indexes documents for retrieval. Relevant passages are pulled at query time and passed to the Mistral API for generation, keeping every answer traceable to source text. A React frontend handles the query/response interface, with caching and rate-limit handling to keep response times stable under load.</p>
+                <p>Django and Django REST Framework power an ingestion pipeline that indexes Ethiopian legal texts — codes, proclamations, and case materials — for retrieval. When a lawyer, student, or citizen asks a question, the system pulls the relevant passages first and passes them to the Mistral API to generate a plain-language answer with the source cited, so nothing is stated without a document behind it. A React frontend delivers the query/response experience, with caching and rate-limit handling to keep answers fast under load.</p>
               </div>
               <div class="case-col">
                 <h4>Solution & Impact</h4>
-                <p>Users get a search-a-document experience instead of ctrl+F skimming. Retrieval-first design keeps answers grounded and citeable, and the architecture is built to scale horizontally as document volume grows.</p>
+                <p>Instead of digging through scattered legal texts, users ask a question in plain language and get an answer grounded in the actual law — with a citation attached. Lawyers cut down research and case-prep time, students and researchers find relevant material in seconds, and everyday citizens get a plain-language explanation of laws that affect them.</p>
               </div>
             </div>
             <div class="case-stack">
@@ -361,8 +361,8 @@
               <div class="field">
                 <label for="budget">Budget range</label>
                 <select id="budget">
-                  <option value="under-3k">Under $3k</option>
-                  <option value="3-10k">$3k – $10k</option>
+                  <option value="under-1k">Under $1k</option>
+                  <option value="3-10k">$1k – $10k</option>
                   <option value="10-30k">$10k – $30k</option>
                   <option value="30k-plus">$30k+</option>
                 </select>
@@ -410,7 +410,7 @@
           <div class="summary-label">Scope summary</div>
           <div class="summary-box" id="summaryBox"></div>
           <div class="funnel-actions">
-            <a href="#" id="sendBtn" class="btn btn-primary btn-block">Send this scope</a>
+            <a href="mailto:nahomdesta.dev@gmail.com" id="sendBtn" class="btn btn-primary btn-block">Send this scope</a>
             <button type="button" id="copyBtn" class="btn btn-ghost">Copy</button>
           </div>
           <div class="copied-msg" id="copiedMsg"></div>
@@ -432,14 +432,14 @@
         <p style="margin-top:10px; max-width:320px; font-size:0.9rem;">Backend & mobile engineer. Building resilient APIs and production-grade cross-platform apps.</p>
       </div>
       <ul class="footer-links">
-        <li><a href="https://github.com" target="_blank" rel="noopener">GitHub</a></li>
-        <li><a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a></li>
-        <li><a href="mailto:hello@narke.tech">hello@narke.tech</a></li>
+        <li><a href="https://github.com/NahumDm" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://linkedin.com/in/nahom-desta-mengesha" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="mailto:nahomdesta.dev@gmail.com">nahomdesta.dev@gmail.com</a></li>
       </ul>
     </div>
-    <div class="footer-bottom">
+    <div class="footer-bottom", style="text-align: center;">
       <span>&copy; 2026 narke.tech</span>
-      <span>Built with Flutter · Django · a healthy respect for uptime</span>
+      <!-- <span>Built with Flutter · Django · a healthy respect for uptime</span> -->
     </div>
   </div>
 </footer>

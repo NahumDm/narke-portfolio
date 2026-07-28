@@ -29,7 +29,7 @@
     hire: 'A full-time hire',
   };
   const stageLabels = { idea: 'Just an idea', mvp: 'MVP in progress', scaling: 'Scaling an existing product' };
-  const budgetLabels = { 'under-3k': 'Under $3k', '3-10k': '$3k–$10k', '10-30k': '$10k–$30k', 'gt-30k': '$30k+', '30k-plus': '$30k+' };
+  const budgetLabels = { 'under-1k': 'Under $1k', '3-10k': '$1k–$10k', '10-30k': '$10k–$30k', 'gt-30k': '$30k+', '30k-plus': '$30k+' };
   const roleLabels = { 'backend-role': 'Backend Engineer', 'mobile-role': 'Mobile Engineer', 'fullstack-role': 'Full-stack / Both' };
   const modeLabels = { remote: 'Remote', onsite: 'On-site', hybrid: 'Hybrid' };
   const timelineLabels = { asap: 'ASAP', '1-3mo': '1–3 months', flexible: 'Flexible' };
