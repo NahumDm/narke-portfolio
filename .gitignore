@@ -1,0 +1,32 @@
+# OS-generated junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor/IDE settings (personal, not shared project config)
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment variables — none used yet, but if you ever add a build step
+# or server-side piece (analytics keys, etc.), this stops secrets from
+# accidentally being committed
+.env
+.env.local
+.env.*.local
+
+# Dependency folders — not used now (no bundler/package.json), but ignored
+# up front in case you add tooling later
+node_modules/
+
+# Build output — same reasoning as above, future-proofing
+dist/
+build/
+
+# Zip archives generated for local sharing/testing
+*.zip

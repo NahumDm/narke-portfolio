@@ -35,6 +35,11 @@ button{font-family:inherit; cursor:pointer;}
 .wrap{max-width:var(--max); margin:0 auto; padding:0 24px; position:relative; z-index:1;}
 section{position:relative; z-index:1;}
 
+/* Sticky header covers the top ~80px of the viewport permanently, so anchor
+   targets need breathing room above them or the header hides short sections
+   entirely (e.g. the stack marquee) and the next section shows underneath it. */
+#work, #stack, #process, #contact{scroll-margin-top:84px;}
+
 ::selection{background:var(--accent-dim); color:var(--accent);}
 :focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:4px;}
 

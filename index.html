@@ -60,7 +60,7 @@
         <p class="lede">Production-grade APIs and cross-platform mobile apps for teams that need to ship fast and stay up — Django backends, Flutter apps, and the RAG pipelines that turn documents into real answers.</p>
         <div class="hero-ctas">
           <a href="#contact" class="btn btn-primary" data-role="client">Request Project Scope</a>
-          <a href="#contact" class="btn btn-ghost" data-role="recruiter">Book Interview</a>
+          <a href="mailto:nahomdesta.dev@gmail.com?subject=Interview%20Request%20—%20via%20narke.tech" class="btn btn-ghost" data-role="recruiter">Book Interview</a>
         </div>
       </div>
 
@@ -209,23 +209,23 @@
         </button>
         <div class="case-body" id="case-3">
           <div class="case-body-inner">
-            <p class="lede" style="max-width:100%; margin-top:14px;">A delivery tracking app designed for the network conditions delivery actually happens in — not the lab conditions most tracking demos are built for.</p>
+            <p class="lede" style="max-width:100%; margin-top:14px;">A role-based Android delivery marketplace connecting customers, drivers, and admins — from browsing a restaurant's menu to placing an order, approving a driver, and navigating a live delivery to the door.</p>
             <div class="case-grid">
               <div class="case-col">
                 <h4>The Challenge</h4>
-                <p>Dispatchers and customers needed real, live visibility into delivery status, but mobile networks in the field are inconsistent — drivers lose signal mid-route and GPS drifts under load.</p>
+                <p>Restaurants needed a reliable way to reach customers online, drivers needed a clear path from signup to earning, and the business needed to manage both sides — verifying driver documents, approving vehicles, tracking every order — without juggling disconnected spreadsheets and phone calls.</p>
               </div>
               <div class="case-col">
                 <h4>Architecture</h4>
-                <p>A Flutter app handles real-time location tracking with resilient reconnect-and-retry logic, so a dropped connection doesn't mean a dropped delivery. Predictable state management drives optimistic UI for order-status transitions, with location updates handled safely in the background.</p>
+                <p>A Flutter Android app with role-based access control powering two distinct experiences: customers browse registered restaurants and menus, place orders, and pay directly in-app; drivers submit documents and vehicle details for approval, then view, accept, or decline available orders and navigate deliveries on the map. Behind the app, an admin platform manages driver approvals, restaurant listings, and order oversight, with a separate sales agent web platform handling onboarding — all running against the same backend.</p>
               </div>
               <div class="case-col">
                 <h4>Solution & Impact</h4>
-                <p>Customers see accurate live tracking instead of a stale pin. Drivers get an app that recovers gracefully when the network flakes mid-delivery. Ops gets a system built for real delivery conditions, not ideal ones.</p>
+                <p>Customers get an on-demand ordering experience, from menu to doorstep, with payment built in. Drivers get a clear, self-serve path: apply, get approved, and start accepting orders on their own schedule. Admins and sales agents get dedicated tools to run the marketplace instead of managing it by hand.</p>
               </div>
             </div>
             <div class="case-stack">
-              <span class="chip">Flutter</span><span class="chip">Dart</span><span class="chip">Real-time location</span><span class="chip">Reconnect/retry logic</span><span class="chip">REST</span>
+              <span class="chip">Flutter</span><span class="chip">Dart</span><span class="chip">PostgreSQL</span><span class="chip">Real-time location</span><span class="chip">Reconnect/retry logic</span><span class="chip">REST</span><span class="chip">Django</span>
             </div>
           </div>
         </div>
@@ -323,7 +323,7 @@
     </div>
   </section>
 
-  <!-- ==========================================================================
+ <!-- ==========================================================================
        COMPONENT: Conversion / Contact Form (Scope Funnel)
        ========================================================================== -->
   <section class="section" id="contact">
@@ -338,9 +338,12 @@
 
       <div class="funnel reveal">
         <form class="funnel-form" id="scopeForm">
+          <input type="hidden" name="_subject" id="formSubject" value="Project scope — via narke.tech">
+          <input type="hidden" name="formatted_summary" id="formattedSummary">
+
           <div class="field">
             <label for="intent">I'm looking for</label>
-            <select id="intent">
+            <select id="intent" name="looking_for">
               <option value="mobile">A custom mobile app</option>
               <option value="backend">A backend / API system</option>
               <option value="both">Both — mobile + backend</option>
@@ -348,11 +351,23 @@
             </select>
           </div>
 
+          <!-- Email lives OUTSIDE both clientFields/recruiterFields — always visible, always submitted -->
+          <div class="row-2">
+            <div class="field">
+              <label for="clientName">Your name</label>
+              <input type="text" id="clientName" name="name" placeholder="Jane Doe" autocomplete="name">
+            </div>
+            <div class="field">
+              <label for="clientEmail">Your email <span style="color:var(--accent);">*</span></label>
+              <input type="email" id="clientEmail" name="email" placeholder="jane@company.com" required autocomplete="email">
+            </div>
+          </div>
+
           <div id="clientFields">
             <div class="row-2">
               <div class="field">
                 <label for="stage">Project stage</label>
-                <select id="stage">
+                <select id="stage" name="project_stage">
                   <option value="idea">Just an idea</option>
                   <option value="mvp">MVP in progress</option>
                   <option value="scaling">Scaling an existing product</option>
@@ -360,7 +375,7 @@
               </div>
               <div class="field">
                 <label for="budget">Budget range</label>
-                <select id="budget">
+                <select id="budget" name="budget">
                   <option value="under-1k">Under $1k</option>
                   <option value="3-10k">$1k – $10k</option>
                   <option value="10-30k">$10k – $30k</option>
@@ -374,7 +389,7 @@
             <div class="row-2">
               <div class="field">
                 <label for="roleType">Role type</label>
-                <select id="roleType">
+                <select id="roleType" name="role_type">
                   <option value="backend-role">Backend Engineer</option>
                   <option value="mobile-role">Mobile Engineer</option>
                   <option value="fullstack-role">Full-stack / Both</option>
@@ -382,7 +397,7 @@
               </div>
               <div class="field">
                 <label for="workMode">Work mode</label>
-                <select id="workMode">
+                <select id="workMode" name="work_mode">
                   <option value="remote">Remote</option>
                   <option value="onsite">On-site</option>
                   <option value="hybrid">Hybrid</option>
@@ -393,7 +408,7 @@
 
           <div class="field">
             <label for="timeline">Timeline</label>
-            <select id="timeline">
+            <select id="timeline" name="timeline">
               <option value="asap">ASAP</option>
               <option value="1-3mo">1–3 months</option>
               <option value="flexible">Flexible</option>
@@ -402,7 +417,7 @@
 
           <div class="field">
             <label for="details">A bit more detail</label>
-            <textarea id="details" placeholder="What are you trying to build or hire for?"></textarea>
+            <textarea id="details" name="details" placeholder="What are you trying to build or hire for?"></textarea>
           </div>
         </form>
 
@@ -410,7 +425,7 @@
           <div class="summary-label">Scope summary</div>
           <div class="summary-box" id="summaryBox"></div>
           <div class="funnel-actions">
-            <a href="mailto:nahomdesta.dev@gmail.com" id="sendBtn" class="btn btn-primary btn-block">Send this scope</a>
+            <button type="button" id="sendBtn" class="btn btn-primary btn-block">Send this scope</button>
             <button type="button" id="copyBtn" class="btn btn-ghost">Copy</button>
           </div>
           <div class="copied-msg" id="copiedMsg"></div>
@@ -434,6 +449,7 @@
       <ul class="footer-links">
         <li><a href="https://github.com/NahumDm" target="_blank" rel="noopener">GitHub</a></li>
         <li><a href="https://linkedin.com/in/nahom-desta-mengesha" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://twitter.com/NahumDm" target="_blank" rel="noopener">X</a></li>
         <li><a href="mailto:nahomdesta.dev@gmail.com">nahomdesta.dev@gmail.com</a></li>
       </ul>
     </div>

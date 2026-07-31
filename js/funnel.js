@@ -2,13 +2,19 @@
    Scope funnel
    1) Role-aware CTAs — clicking a "client" or "recruiter" tagged link
       preselects the right path in the contact form.
-   2) Live scope summary — builds a plain-text summary from the form and
-      wires it into a pre-filled mailto: link plus a copy-to-clipboard button.
+   2) Live scope summary — builds a plain-text summary from the form fields.
+   3) Real submission — POSTs the form to Formspree in the background via
+      fetch(), so the visitor never needs their own email app open.
    ========================================================================== */
 (function () {
+  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xgogblyr';
+
   const intent = document.getElementById('intent');
   if (!intent) return; // funnel not present on this page
 
+  const form = document.getElementById('scopeForm');
+  const clientName = document.getElementById('clientName');       // may be null — handled safely below
+  const clientEmail = document.getElementById('clientEmail');     // may be null — handled safely below
   const clientFields = document.getElementById('clientFields');
   const recruiterFields = document.getElementById('recruiterFields');
   const stage = document.getElementById('stage');
@@ -21,6 +27,12 @@
   const sendBtn = document.getElementById('sendBtn');
   const copyBtn = document.getElementById('copyBtn');
   const copiedMsg = document.getElementById('copiedMsg');
+  const formSubject = document.getElementById('formSubject');           // optional hidden field
+  const formattedSummary = document.getElementById('formattedSummary'); // optional hidden field
+
+  function isValidEmail(value) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((value || '').trim());
+  }
 
   const intentLabels = {
     mobile: 'A custom mobile app',
@@ -43,6 +55,9 @@
   function buildSummary() {
     const isHire = intent.value === 'hire';
     const lines = [];
+
+    if (clientName) lines.push('FROM:         ' + (clientName.value.trim() || '(name not entered)'));
+    if (clientEmail) lines.push('EMAIL:        ' + (clientEmail.value.trim() || '(email not entered)'));
     lines.push('LOOKING FOR:  ' + intentLabels[intent.value]);
 
     if (isHire) {
@@ -65,15 +80,22 @@
     const summary = buildSummary();
     summaryBox.textContent = summary;
 
-    const subject = encodeURIComponent(
-      intent.value === 'hire' ? 'Full-time role inquiry — via narke.tech' : 'Project scope — via narke.tech'
-    );
-    const body = encodeURIComponent(summary);
-    sendBtn.href = `mailto:hello@narke.tech?subject=${subject}&body=${body}`;
+    if (formattedSummary) formattedSummary.value = summary;
+    if (formSubject) {
+      formSubject.value = intent.value === 'hire' ? 'Full-time role inquiry — via narke.tech' : 'Project scope — via narke.tech';
+    }
+
+    // If there's no email field in the HTML, don't gate the button on it.
+    const emailOk = clientEmail ? isValidEmail(clientEmail.value) : true;
+    sendBtn.disabled = !emailOk;
+    sendBtn.style.opacity = emailOk ? '1' : '0.5';
+    sendBtn.style.cursor = emailOk ? 'pointer' : 'not-allowed';
   }
 
   [intent, stage, budget, roleType, workMode, timeline].forEach((el) => el.addEventListener('change', refresh));
   details.addEventListener('input', refresh);
+  if (clientName) clientName.addEventListener('input', refresh);
+  if (clientEmail) clientEmail.addEventListener('input', refresh);
 
   copyBtn.addEventListener('click', () => {
     navigator.clipboard.writeText(summaryBox.textContent).then(() => {
@@ -91,6 +113,44 @@
       if (role === 'client' && intent.value === 'hire') intent.value = 'both';
       intent.dispatchEvent(new Event('change'));
     });
+  });
+
+  // Real submission via Formspree — no visitor email app required.
+  sendBtn.addEventListener('click', async () => {
+    if (sendBtn.disabled) return;
+
+    const originalLabel = sendBtn.textContent;
+    sendBtn.disabled = true;
+    sendBtn.textContent = 'Sending…';
+    copiedMsg.style.color = '';
+    copiedMsg.textContent = '';
+
+    try {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: new FormData(form),
+      });
+
+      if (response.ok) {
+        sendBtn.textContent = 'Sent ✓';
+        copiedMsg.style.color = 'var(--signal-ok)';
+        copiedMsg.textContent = "Thanks — I'll get back to you shortly.";
+        form.reset();
+        setTimeout(() => {
+          sendBtn.textContent = originalLabel;
+          sendBtn.disabled = false;
+          refresh();
+        }, 3000);
+      } else {
+        throw new Error('Formspree returned an error');
+      }
+    } catch (err) {
+      sendBtn.textContent = originalLabel;
+      sendBtn.disabled = false;
+      copiedMsg.style.color = '#F87171';
+      copiedMsg.textContent = 'Something went wrong — try the Copy button and email it directly.';
+    }
   });
 
   refresh();

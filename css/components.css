@@ -179,4 +179,4 @@ footer{border-top:1px solid var(--border-soft); padding:var(--space-xl) 0 var(--
 .footer-top{display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:var(--space-lg); margin-bottom:var(--space-lg);}
 .footer-links{display:flex; gap:var(--space-lg); font-size:0.88rem; color:var(--text-muted);}
 .footer-links a:hover{color:var(--accent);}
-.footer-bottom{display:flex; justify-content:space-between; color:var(--text-faint); font-size:0.8rem; font-family:var(--font-mono); flex-wrap:wrap; gap:10px;}
+.footer-bottom{display:flex; justify-content:center; color:var(--text-faint); font-size:0.8rem; font-family:var(--font-mono); flex-wrap:wrap; gap:10px;}
