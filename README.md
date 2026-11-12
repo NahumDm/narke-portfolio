@@ -76,3 +76,9 @@ Deploy static files over HTTPS. Vercel Web Analytics must be enabled for /_verce
 There is no application backend or authentication layer in this repository. Configure and verify production security headers at the host: frame restrictions, content-type sniffing protection, and a tested Content Security Policy compatible with Google Fonts, Formspree, and analytics. Account for inline styles and the existing inline analytics bootstrap before enforcing strict CSP. Verify HTTPS and headers against the deployed domain.
 
 Formspree owns server-side validation, spam controls, rate limits, and delivery. Verify those controls in its dashboard. Browser validation and disabled buttons are usability safeguards, not abuse prevention. Never place secrets in browser code, commit .env files, or expose client-sensitive details in public project descriptions.
+
+## Favicon assets
+
+Browser, bookmark, and home-screen icons live in assets/images/favicon/. The HTML links to the ICO fallback, 16px and 32px PNGs, the 180px Apple touch icon, and site.webmanifest. The manifest names the portfolio and uses 192px/512px Android icons with paths relative to the manifest, so assets also resolve under a subdirectory deployment. Browser display mode preserves normal navigation; the manifest does not add offline functionality.
+
+When replacing icons, preserve their declared dimensions and update the HTML or manifest if filenames change. Browsers cache favicons aggressively; use a fresh tab or clear the site's cached data when verifying a replacement after deployment.
