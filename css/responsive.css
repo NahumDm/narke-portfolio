@@ -20,3 +20,18 @@
   .row-2{grid-template-columns:1fr;}
   .stat-row{gap:var(--space-lg);}
 }
+
+/* Keep project headings, production links, and actions readable on small phones. */
+@media (max-width:480px){
+  .status-head{flex-wrap:wrap; gap:8px; padding:16px;}
+  .status-row{grid-template-columns:minmax(0,1fr); padding:16px; gap:8px;}
+  .status-badge{grid-column:auto; grid-row:auto; justify-self:start;}
+  .status-metric{grid-column:auto;}
+  .case-head{padding:20px 16px; gap:12px;}
+  .case-title-block{min-width:0; gap:8px 12px;}
+  .case-name{font-size:1.1rem; overflow-wrap:anywhere;}
+  .case-tag{flex-basis:100%;}
+  .case-body-inner{padding:6px 16px 24px;}
+  .case-links{align-items:stretch;}
+  .case-links .btn{justify-content:center; white-space:normal;}
+}

@@ -10,6 +10,8 @@
 
     const setState = (expanded) => {
       btn.setAttribute('aria-expanded', String(expanded));
+      body.inert = !expanded;
+      body.setAttribute('aria-hidden', String(!expanded));
       body.style.maxHeight = expanded ? body.scrollHeight + 'px' : '0px';
     };
 

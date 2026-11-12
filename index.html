@@ -41,7 +41,7 @@
   </nav>
   <ul class="nav-links" id="mobileMenu" style="display:none; flex-direction:column; gap:0; padding:0 24px 18px;">
     <li style="padding:10px 0;"><a href="#work">Work</a></li>
-    <li style="padding:10px 0;"><a href="#matrix">Stack</a></li>
+    <li style="padding:10px 0;"><a href="#stack">Stack</a></li>
     <li style="padding:10px 0;"><a href="#process">Process</a></li>
     <li style="padding:10px 0;"><a href="#contact">Contact</a></li>
   </ul>
@@ -71,6 +71,12 @@
         </div>
         <div class="status-rows">
           <div class="status-row">
+            <div class="status-name">Dawuro Proverbs <span>Flutter &middot; Dawurogna cultural heritage</span></div>
+            <div class="status-metric">Reading <b>fully offline</b></div>
+            <div class="status-metric">Version <b>1.0.3</b></div>
+            <a class="status-badge" href="https://play.google.com/store/apps/details?id=com.narke.dawuro_proverb" target="_blank" rel="noopener noreferrer" aria-label="Dawuro Proverbs on Google Play (opens in a new tab)">GOOGLE PLAY &#8599;</a>
+          </div>
+          <div class="status-row">
             <div class="status-name">SSGI FIX <span>Flutter · Field maintenance reporting</span></div>
             <div class="status-metric">Offline sync <b>&lt; 5s</b></div>
             <div class="status-metric">Report time <b>-70%</b></div>
@@ -80,12 +86,6 @@
             <div class="status-name">LexiAI <span>Django · RAG document intelligence</span></div>
             <div class="status-metric">Avg query <b>~380ms</b></div>
             <div class="status-metric">Grounded <b>retrieval-first</b></div>
-            <div class="status-badge">OPERATIONAL</div>
-          </div>
-          <div class="status-row">
-            <div class="status-name">Kech Delivery <span>Flutter · Real-time logistics tracking</span></div>
-            <div class="status-metric">Live tracking <b>real-time</b></div>
-            <div class="status-metric">Network-resilient <b>auto-retry</b></div>
             <div class="status-badge">OPERATIONAL</div>
           </div>
         </div>
@@ -117,7 +117,7 @@
   </section>
 
   <!-- ==========================================================================
-       COMPONENT: Case Studies (SSGI FIX, LexiAI, Kech Delivery)
+       COMPONENT: Case Studies (Dawuro Proverbs, Barkot, SSGI FIX, LexiAI)
        ========================================================================== -->
   <section class="section" id="work">
     <div class="wrap">
@@ -126,20 +126,96 @@
           <div class="eyebrow">Case Studies</div>
           <h2>Selected systems, not screenshots</h2>
         </div>
-        <p class="lede">Every project below shipped to real users. Expand for the architecture behind it.</p>
+        <p class="lede">Production apps and business systems. Expand each project for its architecture and delivery status.</p>
       </div>
 
-      <!-- Case 1: SSGI FIX -->
+      <!-- Case 1: Dawurogna Figurative Speaking / Dawuro Proverbs -->
       <div class="case reveal">
         <button class="case-head" aria-expanded="true" aria-controls="case-1">
           <div class="case-title-block">
             <span class="case-index">01</span>
+            <span class="case-name">Dawuro Proverbs</span>
+            <span class="case-tag">Flutter &middot; Cultural heritage &middot; Android v1.0.3</span>
+          </div>
+          <span class="case-toggle" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="case-body" id="case-1">
+          <div class="case-body-inner">
+            <p class="lede" style="max-width:100%; margin-top:14px;">Dawurogna Figurative Speaking is an offline-first Flutter app preserving Dawuro proverbs and figurative expressions, with phonetic transcriptions and Amharic translations. Published on Google Play as Dawuro Proverbs.</p>
+            <div class="case-grid">
+              <div class="case-col">
+                <h4>The Challenge</h4>
+                <p>Dawuro oral traditions need an accessible digital home. Speakers and language learners need a way to explore traditional sayings, understand their pronunciation and meaning, and revisit them even when internet access is unavailable.</p>
+              </div>
+              <div class="case-col">
+                <h4>Architecture</h4>
+                <p>A bundled JSON collection feeds a local repository indexed by proverb ID and alphabet category. Provider controllers manage browsing and favorites, Hive persists saved proverb IDs on-device, and shared preferences retain theme settings. GoRouter connects the screens; core reading and favorites work without a server or network connection.</p>
+              </div>
+              <div class="case-col">
+                <h4>Solution & Impact</h4>
+                <p>Readers browse by alphabet, learn through Amharic translations, save favorites, share sayings, and discover a daily proverb in light or dark mode. The production Android app makes Dawuro cultural knowledge available offline to speakers, students, and anyone exploring the language.</p>
+              </div>
+            </div>
+            <div class="case-stack">
+              <span class="chip">Flutter</span><span class="chip">Dart</span><span class="chip">Provider</span><span class="chip">Hive</span><span class="chip">Bundled JSON</span><span class="chip">GoRouter</span><span class="chip">Offline-first</span>
+            </div>
+            <div class="case-links">
+              <a class="btn btn-primary btn-sm" href="https://play.google.com/store/apps/details?id=com.narke.dawuro_proverb" target="_blank" rel="noopener noreferrer">Google Play &#8599;<span class="sr-only"> (opens in a new tab)</span></a>
+              <a class="btn btn-ghost btn-sm" href="https://github.com/NahumDm/Dawurogna-figurative-speaking" target="_blank" rel="noopener noreferrer">Source on GitHub &#8599;<span class="sr-only"> (opens in a new tab)</span></a>
+              <span class="case-version">v1.0.3 &middot; build 5</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Case 2: Barkot Business Operations -->
+      <div class="case reveal">
+        <button class="case-head" aria-expanded="false" aria-controls="case-2">
+          <div class="case-title-block">
+            <span class="case-index">02</span>
+            <span class="case-name">Barkot</span>
+            <span class="case-tag">Full-stack web &middot; Restaurant operations</span>
+          </div>
+          <span class="case-toggle" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="case-body" id="case-2">
+          <div class="case-body-inner">
+            <p class="lede" style="max-width:100%; margin-top:14px;">An internal business operations system for Barkot Bar &amp; Restaurant in Addis Ababa, bringing point of sale, inventory, finance, and monthly payroll into one role-controlled web application.</p>
+            <div class="case-grid">
+              <div class="case-col">
+                <h4>The Challenge</h4>
+                <p>Running a restaurant means reconciling every sale, bottle, expense, and payslip. The system needs to keep those records consistent, prevent duplicate sales when requests are retried, and separate staff duties so the person preparing a payment cannot also approve it.</p>
+              </div>
+              <div class="case-col">
+                <h4>Architecture</h4>
+                <p>A Next.js 16 and TypeScript frontend calls a versioned Django 5.2 and DRF API, with PostgreSQL as the single source of truth. Session authentication, CSRF protection, and backend-enforced permissions serve four roles. Atomic, idempotent operations write an append-only stock ledger and audit trail; decimal money fields preserve financial precision. Docker Compose packages the stack, with Nginx handling production routing and TLS.</p>
+              </div>
+              <div class="case-col">
+                <h4>Solution &amp; Impact</h4>
+                <p>Staff record sales, receive and count stock, approve expenses, and run monthly payroll through dedicated workflows. Owners get derived financial balances and downloadable PDF reports, while sensitive actions retain an audit history. Backend, frontend, and browser test suites support the release pipeline. The production stack has been rehearsed locally; VPS deployment awaits client decisions.</p>
+              </div>
+            </div>
+            <div class="case-stack">
+              <span class="chip">Next.js</span><span class="chip">React</span><span class="chip">TypeScript</span><span class="chip">Tailwind CSS</span><span class="chip">Django</span><span class="chip">DRF</span><span class="chip">PostgreSQL</span><span class="chip">Docker</span><span class="chip">Nginx</span><span class="chip">pytest</span><span class="chip">Vitest</span><span class="chip">Playwright</span>
+            </div>
+            <div class="case-links">
+              <a class="btn btn-ghost btn-sm" href="https://github.com/NahumDm/barkot_internal_system" target="_blank" rel="noopener noreferrer">Source on GitHub &#8599;<span class="sr-only"> (opens in a new tab)</span></a>
+              <span class="case-version">Local deployment rehearsed &middot; VPS pending</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Case 3: SSGI FIX -->
+      <div class="case reveal">
+        <button class="case-head" aria-expanded="false" aria-controls="case-3">
+          <div class="case-title-block">
+            <span class="case-index">03</span>
             <span class="case-name">SSGI FIX</span>
             <span class="case-tag">Cross-platform mobile · Field maintenance</span>
           </div>
           <span class="case-toggle" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
         </button>
-        <div class="case-body" id="case-1">
+        <div class="case-body" id="case-3">
           <div class="case-body-inner">
             <p class="lede" style="max-width:100%; margin-top:14px;">A field maintenance reporting app for technicians at remote satellite sites, built to turn a maintenance issue into a digital report that reaches every technician and manager on the job instantly.</p>
             <div class="case-grid">
@@ -163,17 +239,17 @@
         </div>
       </div>
 
-      <!-- Case 2: LexiAI -->
+      <!-- Case 4: LexiAI -->
       <div class="case reveal">
-        <button class="case-head" aria-expanded="false" aria-controls="case-2">
+        <button class="case-head" aria-expanded="false" aria-controls="case-4">
           <div class="case-title-block">
-            <span class="case-index">02</span>
+            <span class="case-index">04</span>
             <span class="case-name">LexiAI</span>
             <span class="case-tag">Backend · Production RAG stack</span>
           </div>
           <span class="case-toggle" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
         </button>
-        <div class="case-body" id="case-2">
+        <div class="case-body" id="case-4">
           <div class="case-body-inner">
             <p class="lede" style="max-width:100%; margin-top:14px;">A retrieval-augmented legal assistant that answers questions on Ethiopian law — grounding every response in real legal documents and citing its sources, instead of relying on generic model recall.</p>
             <div class="case-grid">
@@ -197,39 +273,6 @@
         </div>
       </div>
 
-      <!-- Case 3: Kech Delivery -->
-      <div class="case reveal">
-        <button class="case-head" aria-expanded="false" aria-controls="case-3">
-          <div class="case-title-block">
-            <span class="case-index">03</span>
-            <span class="case-name">Kech Delivery</span>
-            <span class="case-tag">Cross-platform mobile · Real-time logistics</span>
-          </div>
-          <span class="case-toggle" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
-        </button>
-        <div class="case-body" id="case-3">
-          <div class="case-body-inner">
-            <p class="lede" style="max-width:100%; margin-top:14px;">A role-based Android delivery marketplace connecting customers, drivers, and admins — from browsing a restaurant's menu to placing an order, approving a driver, and navigating a live delivery to the door.</p>
-            <div class="case-grid">
-              <div class="case-col">
-                <h4>The Challenge</h4>
-                <p>Restaurants needed a reliable way to reach customers online, drivers needed a clear path from signup to earning, and the business needed to manage both sides — verifying driver documents, approving vehicles, tracking every order — without juggling disconnected spreadsheets and phone calls.</p>
-              </div>
-              <div class="case-col">
-                <h4>Architecture</h4>
-                <p>A Flutter Android app with role-based access control powering two distinct experiences: customers browse registered restaurants and menus, place orders, and pay directly in-app; drivers submit documents and vehicle details for approval, then view, accept, or decline available orders and navigate deliveries on the map. Behind the app, an admin platform manages driver approvals, restaurant listings, and order oversight, with a separate sales agent web platform handling onboarding — all running against the same backend.</p>
-              </div>
-              <div class="case-col">
-                <h4>Solution & Impact</h4>
-                <p>Customers get an on-demand ordering experience, from menu to doorstep, with payment built in. Drivers get a clear, self-serve path: apply, get approved, and start accepting orders on their own schedule. Admins and sales agents get dedicated tools to run the marketplace instead of managing it by hand.</p>
-              </div>
-            </div>
-            <div class="case-stack">
-              <span class="chip">Flutter</span><span class="chip">Dart</span><span class="chip">PostgreSQL</span><span class="chip">Real-time location</span><span class="chip">Reconnect/retry logic</span><span class="chip">REST</span><span class="chip">Django</span>
-            </div>
-          </div>
-        </div>
-      </div>
 
     </div>
   </section>
@@ -453,7 +496,7 @@
         <li><a href="mailto:nahomdesta.dev@gmail.com">nahomdesta.dev@gmail.com</a></li>
       </ul>
     </div>
-    <div class="footer-bottom", style="text-align: center;">
+    <div class="footer-bottom" style="text-align: center;">
       <span>&copy; 2026 narke.tech</span>
       <!-- <span>Built with Flutter · Django · a healthy respect for uptime</span> -->
     </div>
