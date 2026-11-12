@@ -30,8 +30,11 @@
   const formSubject = document.getElementById('formSubject');           // optional hidden field
   const formattedSummary = document.getElementById('formattedSummary'); // optional hidden field
 
-  function isValidEmail(value) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((value || '').trim());
+  // Request state is independent of field validity; edits cannot unlock a pending send.
+  let isSubmitting = false;
+
+  function isValidEmail() {
+    return clientEmail.value.trim() !== '' && clientEmail.validity.valid;
   }
 
   const intentLabels = {
@@ -48,8 +51,10 @@
 
   function updateFieldVisibility() {
     const isHire = intent.value === 'hire';
-    clientFields.style.display = isHire ? 'none' : 'block';
-    recruiterFields.style.display = isHire ? 'block' : 'none';
+    clientFields.hidden = isHire;
+    clientFields.disabled = isHire;
+    recruiterFields.hidden = !isHire;
+    recruiterFields.disabled = !isHire;
   }
 
   function buildSummary() {
@@ -85,11 +90,9 @@
       formSubject.value = intent.value === 'hire' ? 'Full-time role inquiry — via narke.tech' : 'Project scope — via narke.tech';
     }
 
-    // If there's no email field in the HTML, don't gate the button on it.
-    const emailOk = clientEmail ? isValidEmail(clientEmail.value) : true;
-    sendBtn.disabled = !emailOk;
-    sendBtn.style.opacity = emailOk ? '1' : '0.5';
-    sendBtn.style.cursor = emailOk ? 'pointer' : 'not-allowed';
+    // Native email validation and request state both control availability.
+    const emailOk = isValidEmail();
+    sendBtn.disabled = isSubmitting || !emailOk;
   }
 
   [intent, stage, budget, roleType, workMode, timeline].forEach((el) => el.addEventListener('change', refresh));
@@ -97,11 +100,22 @@
   if (clientName) clientName.addEventListener('input', refresh);
   if (clientEmail) clientEmail.addEventListener('input', refresh);
 
-  copyBtn.addEventListener('click', () => {
-    navigator.clipboard.writeText(summaryBox.textContent).then(() => {
+  copyBtn.addEventListener('click', async () => {
+    copiedMsg.dataset.state = '';
+    try {
+      if (!navigator.clipboard?.writeText) throw new Error('Clipboard unavailable');
+      await navigator.clipboard.writeText(summaryBox.textContent);
       copiedMsg.textContent = 'Copied to clipboard.';
-      setTimeout(() => (copiedMsg.textContent = ''), 2000);
-    });
+    } catch {
+      // A selectable summary also works when browser clipboard permission is denied.
+      summaryBox.focus();
+      const range = document.createRange();
+      range.selectNodeContents(summaryBox);
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
+      copiedMsg.textContent = 'Select and copy the summary, then email it using the link below.';
+    }
   });
 
   // Hero / nav CTAs tagged data-role="client" or data-role="recruiter"
@@ -115,41 +129,43 @@
     });
   });
 
-  // Real submission via Formspree — no visitor email app required.
-  sendBtn.addEventListener('click', async () => {
-    if (sendBtn.disabled) return;
-
-    const originalLabel = sendBtn.textContent;
-    sendBtn.disabled = true;
-    sendBtn.textContent = 'Sending…';
-    copiedMsg.style.color = '';
-    copiedMsg.textContent = '';
+  // Use one submit path for both the button and keyboard submission.
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (isSubmitting || !form.reportValidity()) return;
+    refresh();
+    const payload = new FormData(form);
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 15000);
+    isSubmitting = true;
+    form.setAttribute('aria-busy', 'true');
+    sendBtn.textContent = 'Sending...';
+    copiedMsg.dataset.state = '';
+    copiedMsg.textContent = 'Sending your scope...';
+    refresh();
 
     try {
       const response = await fetch(FORMSPREE_ENDPOINT, {
         method: 'POST',
         headers: { Accept: 'application/json' },
-        body: new FormData(form),
+        body: payload,
+        signal: controller.signal,
       });
-
-      if (response.ok) {
-        sendBtn.textContent = 'Sent ✓';
-        copiedMsg.style.color = 'var(--signal-ok)';
-        copiedMsg.textContent = "Thanks — I'll get back to you shortly.";
-        form.reset();
-        setTimeout(() => {
-          sendBtn.textContent = originalLabel;
-          sendBtn.disabled = false;
-          refresh();
-        }, 3000);
-      } else {
-        throw new Error('Formspree returned an error');
-      }
-    } catch (err) {
-      sendBtn.textContent = originalLabel;
-      sendBtn.disabled = false;
-      copiedMsg.style.color = '#F87171';
-      copiedMsg.textContent = 'Something went wrong — try the Copy button and email it directly.';
+      if (!response.ok) throw new Error('Submission failed');
+      // Keep the draft: a response must never erase edits made during the request.
+      copiedMsg.dataset.state = 'success';
+      copiedMsg.textContent = 'Scope sent. Your draft is kept here for reference.';
+    } catch (error) {
+      copiedMsg.dataset.state = 'error';
+      copiedMsg.textContent = error.name === 'AbortError'
+        ? 'No confirmation received. Email your scope directly or check before retrying.'
+        : 'Could not confirm delivery. Copy your scope and email it directly.';
+    } finally {
+      clearTimeout(timeout);
+      isSubmitting = false;
+      form.setAttribute('aria-busy', 'false');
+      sendBtn.textContent = 'Send this scope';
+      refresh();
     }
   });
 

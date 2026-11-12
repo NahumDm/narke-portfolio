@@ -14,7 +14,8 @@
 
 @media (max-width:720px){
   .nav-links{display:none;}
-  .nav-toggle{display:flex;}
+  .nav-ready .nav-toggle{display:flex;}
+  .mobile-menu{display:flex;}
   .nav-cta .btn-ghost{display:none;}
   .process{grid-template-columns:1fr;}
   .row-2{grid-template-columns:1fr;}
@@ -34,4 +35,11 @@
   .case-body-inner{padding:6px 16px 24px;}
   .case-links{align-items:stretch;}
   .case-links .btn{justify-content:center; white-space:normal;}
+}
+
+@media (max-width:480px){
+  .footer-links{flex-direction:column; gap:14px;}
+  .funnel-actions .btn{width:100%;}
+  .hero-ctas .btn{white-space:normal;}
+  .skill-tags .chip{white-space:normal; overflow-wrap:anywhere;}
 }

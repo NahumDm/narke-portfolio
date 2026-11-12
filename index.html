@@ -34,12 +34,12 @@
     <div class="nav-cta">
       <a href="https://drive.google.com/file/d/1LQMZwb-XbGOAfmEz0-f3D3ASGj_KjcRc/view?usp=sharing" class="btn btn-ghost btn-sm" data-role="recruiter">Resume</a>
       <a href="#contact" class="btn btn-primary btn-sm" data-role="client">Hire Me</a>
-      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button>
     </div>
   </nav>
-  <ul class="nav-links" id="mobileMenu" style="display:none; flex-direction:column; gap:0; padding:0 24px 18px;">
+  <ul class="nav-links mobile-menu" id="mobileMenu">
     <li style="padding:10px 0;"><a href="#work">Work</a></li>
     <li style="padding:10px 0;"><a href="#stack">Stack</a></li>
     <li style="padding:10px 0;"><a href="#process">Process</a></li>
@@ -81,7 +81,6 @@
 
       <div class="stat-row reveal">
         <div class="stat"><b>1</b><span>production app shipped</span></div>
-        <div class="stat"><b>2</b><span>platforms — iOS & Android</span></div>
         <div class="stat"><b>1</b><span>engineer owning phone → server</span></div>
         <div class="stat"><b>0</b><span>tolerance for silent failures</span></div>
       </div>
@@ -119,7 +118,7 @@
 
       <!-- Case 1: Dawurogna Figurative Speaking / Dawuro Proverbs -->
       <div class="case reveal">
-        <button class="case-head" aria-expanded="true" aria-controls="case-1">
+        <button class="case-head" aria-expanded="true" data-default-expanded="true" aria-controls="case-1">
           <div class="case-title-block">
             <span class="case-index">01</span>
             <span class="case-name">Dawuro Proverbs</span>
@@ -157,7 +156,7 @@
       </div>
       <!-- Case 2: Barkot Business Operations -->
       <div class="case reveal">
-        <button class="case-head" aria-expanded="false" aria-controls="case-2">
+        <button class="case-head" aria-expanded="true" data-default-expanded="false" aria-controls="case-2">
           <div class="case-title-block">
             <span class="case-index">02</span>
             <span class="case-name">Barkot</span>
@@ -195,7 +194,7 @@
 
       <!-- Case 3: SSGI FIX -->
       <div class="case reveal">
-        <button class="case-head" aria-expanded="false" aria-controls="case-3">
+        <button class="case-head" aria-expanded="true" data-default-expanded="false" aria-controls="case-3">
           <div class="case-title-block">
             <span class="case-index">03</span>
             <span class="case-name">SSGI FIX</span>
@@ -232,7 +231,7 @@
 
       <!-- Case 4: LexiAI -->
       <div class="case reveal">
-        <button class="case-head" aria-expanded="false" aria-controls="case-4">
+        <button class="case-head" aria-expanded="true" data-default-expanded="false" aria-controls="case-4">
           <div class="case-title-block">
             <span class="case-index">04</span>
             <span class="case-name">LexiAI</span>
@@ -374,7 +373,7 @@
       </div>
 
       <div class="funnel reveal">
-        <form class="funnel-form" id="scopeForm">
+        <form class="funnel-form" id="scopeForm" action="https://formspree.io/f/xgogblyr" method="post">
           <input type="hidden" name="_subject" id="formSubject" value="Project scope — via narke.tech">
           <input type="hidden" name="formatted_summary" id="formattedSummary">
 
@@ -400,7 +399,7 @@
             </div>
           </div>
 
-          <div id="clientFields">
+          <fieldset id="clientFields">
             <div class="row-2">
               <div class="field">
                 <label for="stage">Project stage</label>
@@ -420,9 +419,9 @@
                 </select>
               </div>
             </div>
-          </div>
+          </fieldset>
 
-          <div id="recruiterFields" style="display:none;">
+          <fieldset id="recruiterFields" hidden disabled>
             <div class="row-2">
               <div class="field">
                 <label for="roleType">Role type</label>
@@ -441,7 +440,7 @@
                 </select>
               </div>
             </div>
-          </div>
+          </fieldset>
 
           <div class="field">
             <label for="timeline">Timeline</label>
@@ -460,12 +459,14 @@
 
         <div class="funnel-summary">
           <div class="summary-label">Scope summary</div>
-          <div class="summary-box" id="summaryBox"></div>
+          <div class="summary-box" id="summaryBox" tabindex="0" role="region" aria-label="Your scope summary"></div>
           <div class="funnel-actions">
-            <button type="button" id="sendBtn" class="btn btn-primary btn-block">Send this scope</button>
+            <button type="submit" form="scopeForm" id="sendBtn" class="btn btn-primary btn-block">Send this scope</button>
             <button type="button" id="copyBtn" class="btn btn-ghost">Copy</button>
           </div>
-          <div class="copied-msg" id="copiedMsg"></div>
+          <div class="copied-msg" id="copiedMsg" role="status" aria-live="polite" aria-atomic="true"></div>
+          <p class="contact-help">Prefer email? <a href="mailto:nahomdesta.dev@gmail.com">Email me directly</a>.</p>
+          <noscript><p class="contact-help">You can send a project inquiry with this form. For a hiring inquiry, email me directly. Summary and Copy require JavaScript.</p></noscript>
         </div>
       </div>
     </div>

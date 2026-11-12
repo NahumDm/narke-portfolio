@@ -56,3 +56,9 @@ Sources:
 - https://github.com/NahumDm/barkot_internal_system/blob/main/frontend/package.json
 - https://github.com/NahumDm/barkot_internal_system/blob/main/backend/requirements/base.txt
 - https://github.com/NahumDm/barkot_internal_system/blob/main/docs/ENGINEERING_HANDOFF.md
+
+## Remediation update
+
+The nine findings from the subsequent codebase review have been addressed locally: submission state is independent of validation; inactive paths use disabled fieldsets; drafts survive requests; clipboard failures offer manual selection; feedback is announced; contact/footer layouts wrap; secondary text contrast is increased; essential content is visible without JavaScript; and navigation resets at the desktop breakpoint. The unsupported platform-count statistic was removed. Accordion sizing observes content changes.
+
+Original findings above are historical review notes, not a statement that these defects remain open. README.md documents current operation, regression checks, delivery-status distinctions, and hosting/service security responsibilities. Production headers, provider abuse controls, and LexiAI's full-stack deployment status require external verification. No live contact request was sent during testing.

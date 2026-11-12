@@ -60,3 +60,6 @@ p{color:var(--text-muted);}
 .section{padding:var(--space-2xl) 0;}
 .section-head{display:flex; justify-content:space-between; align-items:flex-end; gap:var(--space-md); margin-bottom:var(--space-xl); flex-wrap:wrap;}
 .section-head .lede{margin-bottom:0;}
+
+/* Hidden must also win against flex/grid component display rules. */
+[hidden]{display:none !important;}
